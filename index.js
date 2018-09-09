@@ -21,11 +21,8 @@ app.get('/', function(req,res){
 
 // // Add a connect listener
 io.on('connection', function(socket) {
- console.log('a user connected');
-
-  // Disconnect listener
-  socket.on('disconnect', function(){
-   console.log('user disconnected');
+  socket.on('chat message', function(msg){
+    console.log('message: ' + msg);
   });
 });
 
