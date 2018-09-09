@@ -8,6 +8,7 @@ var http = require('http').Server(app);
 
 // New instance of socket.io by passing the http (the HTTP server) object. 
 var io = require('socket.io')(http);
+var port = process.env.PORT || 3000;
 
 //Middleware to resolve the MIME type ('text/html') is not executable issue
 app.use(express.static(__dirname + '/public' ));
@@ -19,18 +20,17 @@ app.get('/', function(req,res){
 });
 
 // // Add a connect listener
-io.on('Connection', function(socket) {
-
-  console.log('a user connected');
+io.on('connection', function(socket) {
+ console.log('a user connected');
 
   // Disconnect listener
   socket.on('disconnect', function(){
-    console.log('user disconnected');
+   console.log('user disconnected');
   });
 });
 
 // Server running on port 3000
-http.listen(3000, function(){
+http.listen(port, function(){
   console.log('Listening on port: 3000');
 });
 
