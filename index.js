@@ -8,7 +8,7 @@ var http = require('http').Server(app);
 // Defining the route handler '/'
 // that gets called when we hit our website home
 app.get('/', function(req,res){
-  res.send('<h1>NODE TCHAT APP</h1>')
+  res.sendFile('/index.html', {root : __dirname});
 });
 
 // http server listen on port 3000
