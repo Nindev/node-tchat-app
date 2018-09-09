@@ -21,13 +21,17 @@ app.get('/', function(req,res){
 
 // // Add a connect listener
 io.on('connection', function(socket) {
+
+  // send the message to everyone, including the sender
   socket.on('chat message', function(msg){
     console.log('message: ' + msg);
+    io.emit('chat message', msg);
   });
+
 });
 
 // Server running on port 3000
 http.listen(port, function(){
-  console.log('Listening on port: 3000');
+  console.log('Listening on *: ' + port);
 });
 
